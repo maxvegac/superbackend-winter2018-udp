@@ -2,30 +2,26 @@
 const models = require('../models');
 
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('user', {
+    return sequelize.define('class', {
         name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            isEmail: true,
-        },
-        password: {
+        code: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        age: {
+        section: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        year: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        semester: {
             type: DataTypes.INTEGER,
             allowNull: false
         }
-    }, {
-        classMethods: {
-            associate: (models) => {
-                user.belongsTo(models.role);
-            }
-        },
-        //paranoid: true,
     });
 };
