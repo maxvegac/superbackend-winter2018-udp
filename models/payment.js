@@ -1,8 +1,7 @@
 'use strict';
-const models = require('../models');
 
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('payment', {
+    let payment = sequelize.define('payment', {
         amount: {
             type: DataTypes.INTEGER,
             allowNull: false
@@ -12,4 +11,5 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         }
     });
+    return payment;
 };

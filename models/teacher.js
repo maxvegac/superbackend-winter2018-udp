@@ -1,8 +1,7 @@
 'use strict';
-const models = require('../models');
 
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('teacher', {
+    let teacher = sequelize.define('teacher', {
         name: {
             type: DataTypes.STRING,
             allowNull: false
@@ -10,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         rut: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true
         },
         email: {
             type: DataTypes.STRING,
@@ -21,14 +21,14 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         }
     }, {
-        classMethods: {
-            associate: (models) => {
-                teacher.belongsToMany({
-                    model: models.class,
-                    through: 'TeacherClass'
-                });
-            }
-        },
         //paranoid: true,
     });
+    teacher.associate = (models) => {
+        teacher.belongsToMany(models.class, {
+            through: 'TeacherClass',
+            as: 'classes',
+            unique: true,
+        });
+    };
+    return teacher;
 };

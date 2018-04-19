@@ -6,30 +6,25 @@ router.post('/', async (req, res, next) => {
     const name = req.body['name'];
     const email = req.body['email'];
     const rut = req.body['rut'];
-    const startYear = req.body['startYear'];
-    const ranking = req.body['ranking'];
-    const schoolRanking = req.body['schoolRanking'];
-
-    if (name && email && rut && startYear && ranking && schoolRanking) {
-        models.student.create({
+    const maxGrade = req.body['maxGrade'];
+    if (name && email && rut && maxGrade) {
+        models.teacher.create({
             name: name,
             email: email,
             rut: rut,
-            startYear: startYear,
-            ranking: ranking,
-            schoolRanking: schoolRanking
-        }).then(student => {
-            if (student) {
+            maxGrade: maxGrade
+        }).then(teacher => {
+            if (teacher) {
                 res.json({
                     status: 1,
-                    statusCode: 'student/created',
-                    data: student.toJSON()
+                    statusCode: 'teacher/created',
+                    data: teacher.toJSON()
                 });
             } else {
                 res.status(400).json({
                     status: 0,
-                    statusCode: 'student/error',
-                    description: "Couldn't create the student"
+                    statusCode: 'teacher/error',
+                    description: "Couldn't create the teacher"
                 });
             }
         }).catch(error => {
@@ -42,7 +37,7 @@ router.post('/', async (req, res, next) => {
     } else {
         res.status(400).json({
             status: 0,
-            statusCode: 'student/wrong-body',
+            statusCode: 'teacher/wrong-body',
             description: 'The body is wrong! :('
         });
     }
@@ -53,12 +48,12 @@ router.post('/assign', async (req, res, next) => {
     const section = req.body.section;
     const code = req.body.code;
     if (rut && section && code) {
-        models.student.findOne({
+        models.teacher.findOne({
             where: {
                 rut: rut
             }
-        }).then(student => {
-            if (student) {
+        }).then(teacher => {
+            if (teacher) {
                 models.class.findOne({
                     where: {
                         code: code,
@@ -66,12 +61,12 @@ router.post('/assign', async (req, res, next) => {
                     }
                 }).then(classX => {
                     if (classX) {
-                        student.setClasses(classX);
+                        teacher.addClasses([classX]);
                         res.json({
                             status: 1,
-                            statusCode: 'student/class-assigned',
+                            statusCode: 'teacher/class-assigned',
                             data: {
-                                student: student.toJSON(),
+                                teacher: teacher.toJSON(),
                                 'class': classX.toJSON()
                             }
                         });
@@ -92,8 +87,8 @@ router.post('/assign', async (req, res, next) => {
             } else {
                 res.status(400).json({
                     status: 0,
-                    statusCode: 'student/not-found',
-                    description: "Couldn't find the student"
+                    statusCode: 'teacher/not-found',
+                    description: "Couldn't find the teacher"
                 });
             }
         }).catch(error => {
@@ -115,36 +110,25 @@ router.post('/assign', async (req, res, next) => {
 router.get('/:rut', async (req, res, next) => {
     const rut = req.params.rut;
     if (rut) {
-        models.student.findOne({
+        models.teacher.findOne({
             where: {
                 rut: rut
             },
             include: [{
                 model: models.class,
-                through: "StudentClass",
-                as: 'classes',
-                include: [{
-                    model: models.teacher,
-                    through: "TeacherClass",
-                    as: 'teachers'
-                }]
-            }, {
-                model: models.payment,
-                through: "StudentsPayments",
-                as: 'payments'
             }]
-        }).then(student => {
-            if (student) {
+        }).then(teacher => {
+            if (teacher) {
                 res.json({
                     status: 1,
-                    statusCode: 'student/found',
-                    data: student.toJSON()
+                    statusCode: 'teacher/found',
+                    data: teacher.toJSON()
                 });
             } else {
                 res.status(400).json({
                     status: 0,
-                    statusCode: 'student/not-found',
-                    description: "Couldn't find the student"
+                    statusCode: 'teacher/not-found',
+                    description: "Couldn't find the teacher"
                 });
             }
         }).catch(error => {
@@ -157,7 +141,7 @@ router.get('/:rut', async (req, res, next) => {
     } else {
         res.status(400).json({
             status: 0,
-            statusCode: 'student/wrong-parameter',
+            statusCode: 'teacher/wrong-parameter',
             description: 'The parameters are wrong! :('
         });
     }

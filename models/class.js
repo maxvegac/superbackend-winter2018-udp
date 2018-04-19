@@ -1,15 +1,14 @@
 'use strict';
-const models = require('../models');
 
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('class', {
+    let classX = sequelize.define('class', {
         name: {
             type: DataTypes.STRING,
             allowNull: false
         },
         code: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         section: {
             type: DataTypes.INTEGER,
@@ -23,5 +22,24 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false
         }
+    }, {
+        // Creo indice único para code y section. Esta es la manera de definir índices únicos para dos columnas
+        indexes: [{
+            fields: ['code', 'section'],
+            unique: true
+        }]
     });
+    classX.associate = (models) => {
+        classX.belongsToMany(models.teacher, {
+            through: 'TeacherClass',
+            as: 'teachers',
+            unique: true,
+        });
+        classX.belongsToMany(models.class, {
+            through: 'StudentClass',
+            as: 'students',
+            unique: true
+        });
+    };
+    return classX;
 };
