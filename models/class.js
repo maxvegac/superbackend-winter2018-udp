@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
             as: 'teachers',
             unique: true,
         });
-        classX.belongsToMany(models.class, {
+        classX.belongsToMany(models.student, {
             through: 'StudentClass',
             as: 'students',
             unique: true

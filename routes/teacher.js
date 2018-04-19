@@ -116,6 +116,13 @@ router.get('/:rut', async (req, res, next) => {
             },
             include: [{
                 model: models.class,
+                through: "TeacherClass",
+                as: 'classes',
+                include: [{
+                    model: models.student,
+                    through: "StudentClass",
+                    as: 'students'
+                }]
             }]
         }).then(teacher => {
             if (teacher) {

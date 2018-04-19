@@ -53,7 +53,16 @@ router.get('/:code/:section', async (req, res, next) => {
             where: {
                 code: code,
                 section: section
-            }
+            },
+            include: [{
+                model: models.teacher,
+                as: 'teachers',
+                through: 'TeacherClass'
+            }, {
+                model: models.student,
+                as: 'students',
+                through: 'StudentClass'
+            }]
         }).then(classX => {
             if (classX) {
                 res.json({

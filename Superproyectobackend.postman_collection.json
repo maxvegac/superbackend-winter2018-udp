@@ -1,0 +1,445 @@
+{
+	"info": {
+		"_postman_id": "c1ea5d02-739a-4e05-b007-f59a6169f3de",
+		"name": "Superproyectobackend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Student",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Javier Carrion",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "javier.carrion@mail.udp.cl",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "startYear",
+							"value": "2014",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "ranking",
+							"value": "1002",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "schoolRanking",
+							"value": "320",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "rut",
+							"value": "19137116-K",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5555/student/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"student",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Student 2 (To have two students)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Javier Carrion",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "javier.carrion@mail.udp.cl",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "startYear",
+							"value": "2014",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "ranking",
+							"value": "1002",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "schoolRanking",
+							"value": "320",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "rut",
+							"value": "19137116-K",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5555/student/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"student",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Teacher",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Maximiliano Vega",
+							"type": "text",
+							"description": ""
+						},
+						{
+							"key": "email",
+							"value": "maximiliano.vega@mail.udp.cl",
+							"type": "text",
+							"description": ""
+						},
+						{
+							"key": "maxGrade",
+							"value": "BSc",
+							"type": "text",
+							"description": ""
+						},
+						{
+							"key": "rut",
+							"value": "17374943-0",
+							"type": "text",
+							"description": ""
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5555/teacher/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"teacher",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Class",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "code",
+							"value": "CIT1010",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Programación Avanzada",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "section",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "year",
+							"value": "2018",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "semester",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5555/class/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"class",
+						""
+					]
+				},
+				"description": ":D"
+			},
+			"response": []
+		},
+		{
+			"name": "Assign student to class",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "rut",
+							"value": "19137116-K",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "section",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "CIT1010",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5555/student/assign",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"student",
+						"assign"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assign student 2 to class",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "rut",
+							"value": "19137116-K",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "section",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "CIT1010",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5555/student/assign",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"student",
+						"assign"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assign teacher to class",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "rut",
+							"value": "17374943-0",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "section",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "CIT1010",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5555/teacher/assign",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"teacher",
+						"assign"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get student data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5555/student/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"student",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get teacher data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get class data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	]
+}
