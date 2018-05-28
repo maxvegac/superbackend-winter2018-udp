@@ -4,7 +4,7 @@ const router = express.Router();
 /* GET home page. */
 router.get('/', (req, res) => {
     res.json({
-        title: 'Super proyecto backend!'
+        showLogo: Math.round(Math.random()) === 1 ? true : false
     })
 });
 

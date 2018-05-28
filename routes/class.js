@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const models = require('../models');
 
+router.get('/', async (req, res, next) => {
+    models.class.findAll().then(classes => {
+        res.json({
+            status: 1,
+            statusCode: 'class/listing',
+            data: classes
+        });
+    })
+});
+
 router.post('/', async (req, res, next) => {
     const name = req.body['name'];
     const code = req.body['code'];
